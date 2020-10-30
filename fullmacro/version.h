@@ -1,9 +1,9 @@
 
 #ifndef __VERSIONS_H /* Include Guard */
 
-#define C99_VERSION_VALUE 199901L
-#define C11_VERSION_VALUE 201112L
-#define C18_VERSION_VALUE 201710L
+#define __C99_VERSION_VALUE 199901L
+#define __C11_VERSION_VALUE 201112L
+#define __C18_VERSION_VALUE 201710L
 
 #if defined(__STDC__)  || defined(_MSC_VER)
 
@@ -16,21 +16,21 @@
 #define __HAS_C94 1
 
 /* If such macro has C99*/
-#if __STDC_VERSION__ >= C99_VERSION_VALUE
+#if __STDC_VERSION__ >= __C99_VERSION_VALUE
 
 #define __HAS_C99 1
 
 #endif /* End C99 */
 
 /* If such macro has C11 */
-#if __STDC_VERSION__ >= C11_VERSION_VALUE
+#if __STDC_VERSION__ >= __C11_VERSION_VALUE
 
 #define __HAS_C11 1
 
 #endif /* End C11 */
 
 /* If such macro includes C18 */
-#if __STDC_VERSION__ >= C18_VERSION_VALUE
+#if __STDC_VERSION__ >= __C18_VERSION_VALUE
 
 #define __HAS_C18 1
 

@@ -58,7 +58,4 @@ static int shut_up_puts(const char *s)
 
 
 
-
-
-
 #endif

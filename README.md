@@ -2,7 +2,7 @@
 
 # FullMacro
 
-*Heretic C and nothing more*
+*Heretic C and nothing else*
 
 
 ---

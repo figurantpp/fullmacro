@@ -64,12 +64,22 @@
 
 /* I don't create inner macros for the EXTEND ones because they don't expand too much */
 
+/**
+ * Registers a single type in `typename_of`.
+ */
 #define FULL_MACRO_EXTEND(type) , type: #type
 
+/**
+ * Registers a given type, the pointer to given type, and the const pointer to the type in
+ * `typename_of`
+ */
 #define FULL_MACRO_COMPLETE_EXTEND(type) \
     , type: #type \
     , type *: #type " *", const type *: "const " #type " *"
 
+/**
+ * The macro used to register the builtin types of the `typename_of` macro.
+ */
 #ifndef FULL_MACRO_INNER_EXTENSOR
 #define FULL_MACRO_INNER_EXTENSOR FULL_MACRO_COMPLETE_EXTEND
 #endif

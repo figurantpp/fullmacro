@@ -2,7 +2,7 @@
 
 # FullMacro
 
-*Heretic C and nothing more*
+*Heretic C and nothing else*
 
 
 ---
@@ -99,19 +99,19 @@ char *name = typename_of(x);
 
 print(name); // Prints "int"
 
-print(type_is(x, int)); // 1
-print(type_is(x, double)); // 0
+print(type_is(x, int));       // 1
+print(type_is(x, double));    // 0
 print(type_is(x, const int)); // 0 (comparison against const will always fail)
 
 print(typename_of(&x)); // Prints "const int *"
 
-print(type_is(&x, int*)); // 0
+print(type_is(&x, int*));       // 0
 print(type_is(&x, const int*)); // 1
 
 ```
 
 `fullmacro.h` will also perform all declarations of `infer.h` if it detects that GNUC is present in the current
- environment (`fullmacro.h` does not require `infer.h` to be work properly though). 
+ environment (`fullmacro.h` does not require the presence of `infer.h` to work properly though). 
 
 ## `infer.h`
 
@@ -151,9 +151,9 @@ is not.
 
 The `__C??_VERSION_VALUE` family of macros expand to long constants that represent the version value of C standards.
 
-- `C99_VERSION_VALUE`: The long constant that represents the value defined in C99
-- `C11_VERSION_VALUE`: The long constant that represents the value defined in C11
-- `C18_VERSION_VALUE`: The long constant that represents the value defined in C18
+- `__C99_VERSION_VALUE`: The long constant that represents the value defined in C99.
+- `__C11_VERSION_VALUE`: The long constant that represents the value defined in C11.
+- `__C18_VERSION_VALUE`: The long constant that represents the value defined in C18.
 
 
 ## `common_bool.h`

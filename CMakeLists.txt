@@ -15,6 +15,6 @@ add_library(
         fullmacro/version.h
 )
 
-add_executable(fullmacro_test main.c)
+add_executable(fullmacro_test test.c)
 
 target_link_libraries(fullmacro_test fullmacro)

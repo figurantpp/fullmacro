@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(fullmacro C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 90)
 
 add_library(
         fullmacro

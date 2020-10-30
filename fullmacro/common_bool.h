@@ -12,6 +12,6 @@
 
 #include <stdbool.h>
 
-#undef CC99_VERSION_VALUE
+#undef C99_VERSION_VALUE
 
 #endif

@@ -4,7 +4,7 @@
 
 #ifndef __GNUC__
 
-#error The Infer Header requires the GNU extensions
+#error The Infer Header requires GNUC
 
 #endif
 

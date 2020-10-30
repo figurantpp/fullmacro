@@ -25,37 +25,40 @@
 
 #endif /* __STDC_VERSION < C11_VERSION_VALUE */
 
-
+#undef C11_VERSION_VALUE
 
 #ifdef __cplusplus
 
 #error The usage of FullMacro with C++ is prohibited.
 
-#endif
+#endif /* __cplusplus */
 
 
 /* Section 2: Inner Macros */
 
+/* TODO: Check if const part is needed and remove it if so */
 
-#define __full_macro_get_type_specifier_of(x)       \
-    _Generic((x)                    , \
-        char               : "%c"   , const char               : "%c"   , \
-        signed char        : "%hhc" , const signed char        : "%hhc" , \
-        unsigned char      : "%hhu" , const unsigned char      : "%hhu" , \
-        int                : "%d"   , const int                : "%d"   , \
-        unsigned int       : "%u"   , const unsigned int       : "%u"   , \
-        short int          : "%hd"  , const short int          : "%hd"  , \
-        unsigned short int : "%hu"  , const unsigned short int : "%hu"  , \
-        long int           : "%ld"  , const long int           : "%ld"  , \
-        unsigned long int  : "%lu"  , const unsigned long int  : "%lu"  , \
-        _Bool              : "%d"   , const _Bool              : "%d"   , \
-        long double        : "%Lf"  , const long double        : "%Lf"  , \
-        double             : "%.2f" , const double             : "%.2f" , \
-        float              : "%.2f" , const float              : "%.2f" , \
-        char*              : "%s"   , const char*              : "%s"   , \
-        const char* const  : "%s", \
-        void*              : "%p"   , const void*              : "%p",    \
-        const void* const  : "%p" \
+#define __full_macro_get_type_specifier_of(x) \
+    _Generic((x)                    ,         \
+        char                   : "%c"   , const char                   : "%c"   , \
+        signed char            : "%hhc" , const signed char            : "%hhc" , \
+        unsigned char          : "%hhu" , const unsigned char          : "%hhu" , \
+        int                    : "%d"   , const int                    : "%d"   , \
+        unsigned int           : "%u"   , const unsigned int           : "%u"   , \
+        short int              : "%hd"  , const short int              : "%hd"  , \
+        unsigned short int     : "%hu"  , const unsigned short int     : "%hu"  , \
+        long int               : "%ld"  , const long int               : "%ld"  , \
+        long long int          : "%lld" , const long long int          : "%lld" , \
+        unsigned long long int : "%llu" , const unsigned long long int : "%llu" , \
+        unsigned long int      : "%lu"  , const unsigned long int      : "%lu"  , \
+        _Bool                  : "%d"   , const _Bool                  : "%d"   , \
+        long double            : "%Lf"  , const long double            : "%Lf"  , \
+        double                 : "%.2f" , const double                 : "%.2f" , \
+        float                  : "%.2f" , const float                  : "%.2f" , \
+        char*                  : "%s"   , const char*                  : "%s"   , \
+        const char* const      : "%s",                                            \
+        void*                  : "%p"   , const void*                  : "%p",    \
+        const void* const      : "%p"                                             \
     )
 
 #ifndef FULL_MACRO_EXTENDED_TYPENAMES
@@ -115,7 +118,7 @@
 #define __full_macro_print(x) do { file_print(stdout, x); putchar('\n'); } while(0)
 
 #define __full_macro_dump_value(x) \
-    do { printf("%s %s => ", typename_of(x), #x); file_print(stdout, x); putchar('\n'); } while (0)
+    do { printf("%s `%s` => ", typename_of(x), #x); file_print(stdout, x); putchar('\n'); } while (0)
 
 #define __full_macro_type_is(x,T) (_Generic((x), T : 1, default : 0))
 

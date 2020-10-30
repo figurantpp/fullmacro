@@ -71,6 +71,19 @@ to the one of `print`, except no newline is added.
 If one wants to write a value to `stdout` without appending a newline to the output, they can use also use
 the `print_no_newline` macro.
 
+Another macro intended for printing is `dump_value` which will display some information about the given argument. 
+
+```c
+
+int x = 10;
+int *pointer = &x;
+
+dump_value(x) // int `x` => 10
+dump_value(pointer) // int * `pointer` => 0xcafebabe
+```
+
+*Note: Avoid calls to dump_value with macros as arguments.*
+
 FullMacro also provides macros to retrieve the type of a value.
 The `typename_of` macro returns a string containing the name of a builtin type, although non builtin names can be
 implemented as shown later.
@@ -83,10 +96,10 @@ int x = 10;
 
 print(typename_of(x)); // int
 
-print(type_is(x, int)); // 1
-print(type_is(x, float)); // 0
+print(type_is(x, int));    // 1
+print(type_is(x, float));  // 0
 print(type_is(x, double)); // 0
-print(type_is(&x, int*)); // 1
+print(type_is(&x, int*));  // 1
 ```
  
 Note that `typename_of` discards the const qualifier of the given value, and `type_is` comparisons against any constant
@@ -194,9 +207,9 @@ struct Beta {};
 struct Gamma {};
 
 #undef FULL_MACRO_EXTENDED_TYPENAMES
-#define FULL_MACRO_EXTENDED_TYPENAMES \
+#define FULL_MACRO_EXTENDED_TYPENAMES        \
     FULL_MACRO_COMPLETE_EXTEND(struct Alpha) \
-    FULL_MACRO_COMPLETE_EXTEND(struct Beta) \
+    FULL_MACRO_COMPLETE_EXTEND(struct Beta)  \
     FULL_MACRO_EXTEND(struct Gamma)
     
 
@@ -207,14 +220,14 @@ int main()
     struct Gamma gamma;
 
     print(typename_of(alpha)); // struct Alpha
-    print(typename_of(beta)); // struct beta
+    print(typename_of(beta));  // struct beta
     print(typename_of(gamma)); // struct Gamma
 
     print(typename_of(&alpha)); // const struct Alpha *
-    print(typename_of(&beta)); // struct Beta *
+    print(typename_of(&beta));  // struct Beta *
     print(typename_of(&gamma)); // <unregistered type>
 
     // struct Gamma* is not registered because we have only used `FULL_MACRO_EXTEND` on it.
-    // Only FULL_MACRO_COMPLETE_EXTENDS registers the pointers to a given type.
+    // Only FULL_MACRO_COMPLETE_EXTEND registers the pointers to a given type.
 }
 ```

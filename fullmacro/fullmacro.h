@@ -39,7 +39,7 @@
 /* TODO: Check if const part is needed and remove it if so */
 
 #define __full_macro_get_type_specifier_of(x) \
-    _Generic((x)                    ,         \
+    ( (char*) _Generic((x)                    ,         \
         char                   : "%c"   , const char                   : "%c"   , \
         signed char            : "%hhc" , const signed char            : "%hhc" , \
         unsigned char          : "%hhu" , const unsigned char          : "%hhu" , \
@@ -59,7 +59,7 @@
         const char* const      : "%s",                                            \
         void*                  : "%p"   , const void*                  : "%p",    \
         const void* const      : "%p"                                             \
-    )
+    ) )
 
 #ifndef FULL_MACRO_EXTENDED_TYPENAMES
 #define FULL_MACRO_EXTENDED_TYPENAMES
@@ -89,7 +89,7 @@
 
 
 #define __full_macro_typename_of(x) \
-    (char*) _Generic((x)\
+    ( (char*) _Generic((x)\
         FULL_MACRO_INNER_EXTENSOR(char) \
         FULL_MACRO_INNER_EXTENSOR(signed char) \
         FULL_MACRO_INNER_EXTENSOR(unsigned char) \
@@ -109,7 +109,7 @@
         FULL_MACRO_EXTEND(const void*), \
         default: "<unregistered type>" \
         FULL_MACRO_EXTENDED_TYPENAMES \
-    )
+    ) )
 
 #define __full_macro_file_print(file, x) do { fprintf(file, get_type_specifier_of(x), x); } while (0)
 
